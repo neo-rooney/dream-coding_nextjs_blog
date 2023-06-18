@@ -1,3 +1,8 @@
-export default function PostPage() {
-  return <div>PostPage</div>;
+import FilteredPosts from "@/components/FilteredPosts";
+import { getAllPosts } from "@/services/posts";
+
+export default async function PostPage() {
+  const posts = await getAllPosts();
+  const categories = [...new Set(posts.map((post) => post.category))];
+  return <FilteredPosts posts={posts} categories={categories} />;
 }
