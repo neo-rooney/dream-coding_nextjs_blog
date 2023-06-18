@@ -1,11 +1,11 @@
-import FeaturedPost from "@/components/FeaturedPost";
+import FeaturedPosts from "@/components/FeaturedPosts";
 import Hero from "@/components/Hero";
 
 export default function HomePage() {
   return (
     <section>
       <Hero />
-      <FeaturedPost />
+      <FeaturedPosts />
     </section>
   );
 }
