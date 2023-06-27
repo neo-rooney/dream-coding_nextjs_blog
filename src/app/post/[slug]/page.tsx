@@ -1,7 +1,6 @@
-import MarkdownViewer from "@/components/MarkdownViewer";
+import PostContent from "@/components/PostContent";
 import { getPostData } from "@/services/posts";
 import Image from "next/image";
-import { AiTwotoneCalendar } from "react-icons/ai";
 
 type Props = {
   params: {
@@ -10,8 +9,8 @@ type Props = {
 };
 
 export default async function PostPage({ params: { slug } }: Props) {
-  const { title, content, description, date, path } = await getPostData(slug);
-
+  const post = await getPostData(slug);
+  const { title, path } = post;
   return (
     <article className="rounded-2xl overflow-hidden bg-gray-100 shadow-lg m-4">
       <Image
@@ -21,17 +20,7 @@ export default async function PostPage({ params: { slug } }: Props) {
         height={420}
         alt={title}
       />
-      <section className="flex flex-col p-4">
-        <div className="flex items-center gap-2 self-end text-sky-600">
-          <AiTwotoneCalendar />
-          <p className="font-semibold">{date.toString()}</p>
-        </div>
-
-        <h1 className="text-4xl font-bold">{title}</h1>
-        <p className="text-2xl font-bold">{description}</p>
-        <div className="w-44 border-2 border-sky-600 mb-8"></div>
-        <MarkdownViewer content={content} />
-      </section>
+      <PostContent post={post} />
     </article>
   );
 }
