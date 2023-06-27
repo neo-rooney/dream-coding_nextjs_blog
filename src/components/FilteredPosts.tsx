@@ -19,7 +19,7 @@ export default function FilteredPosts({ posts, categories }: Props) {
       ? posts
       : posts.filter((post) => post.category === selected);
   return (
-    <section>
+    <section className="flex gap-4">
       <PostsGrid posts={filtered} />
       <Categories
         categories={[DEFAULT_SELECTED, ...categories]}
